@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İşçi Ağı | Dayanışma ve Şeffaflık Platformu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">İşçiAğı.</div>
+            <div class="nav-actions">
+                <span class="badge">Beta v1.0</span>
+                <button id="auth-btn" class="btn btn-primary">Giriş Yap</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-layout">
+        
+        <header class="hero-header">
+            <h1>Deneyimini Paylaş, Yol Göster.</h1>
+            <p>İş yerlerini inceleyin, çalışma şartlarını görün, isterseniz tamamen anonim kalarak hakkınızı arayın.</p>
+        </header>
+
+        <section class="card mb-24">
+            <div class="tabs">
+                <button id="tab-internal" class="tab-button active">Sistemde Ara</button>
+                <button id="tab-google" class="tab-button">Haritalarda Ara</button>
+                <button id="tab-manual" class="tab-button">Manuel İşletme Ekle</button>
+            </div>
+
+            <div class="search-box-wrapper">
+                <input type="text" id="search-input" placeholder="Sistemimizde kayıtlı iş yerlerini arayın...">
+                <button id="search-submit-btn" class="search-icon-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            
+            <div id="search-results" class="results-list hidden"></div>
+        </section>
+
+        <section id="review-section" class="card">
+            <div class="section-header">
+                <h2>Deneyimini Paylaş</h2>
+                
+                <div class="anon-control">
+                    <span class="anon-label">Kimliğimi Gizle</span>
+                    <label class="switch">
+                        <input type="checkbox" id="anonymous-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div id="selected-business-card" class="info-banner">
+                <div class="info-details">
+                    <h3 id="current-business-name">Özkanlar Tekstil Sanayi</h3>
+                    <p id="current-business-address">İstanbul, Bağcılar</p>
+                </div>
+                <span class="status-badge">Seçildi</span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Genel Değerlendirmen</label>
+                <div class="rating-options">
+                    <button type="button" id="rate-recommend" class="rate-btn">
+                        <span class="emoji">👍</span>
+                        <span class="text">Önerilen</span>
+                    </button>
+                    <button type="button" id="rate-not-recommend" class="rate-btn">
+                        <span class="emoji">👎</span>
+                        <span class="text">Önerilmeyen</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="review-content" class="form-label">Çalışma Şartları & Detaylar</label>
+                <textarea id="review-content" rows="5" placeholder="Maaşlar düzenli ödeniyor mu? Mesai ücretleri veriliyor mu? Yönetimin çalışanlara tavrı nasıl? Detaylıca belirtin..."></textarea>
+            </div>
+
+            <button id="submit-review-btn" class="btn btn-primary btn-block">Paylaşımı Gönder</button>
+            <p class="form-footer-notice">Gönderilen tüm yorumlar topluluk yönergelerine ve moderasyon süzgecine tabidir.</p>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
