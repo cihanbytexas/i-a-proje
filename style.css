@@ -1,14 +1,17 @@
 :root {
-    --bg-main: #f9f9fb;
+    --bg-main: #f5f5f7;
     --bg-white: #ffffff;
     --border-color: #e5e5ea;
     --border-focus: #000000;
-    --text-main: #111111;
-    --text-muted: #666666;
-    --text-light: #999999;
-    --radius-md: 10px;
-    --radius-lg: 16px;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --text-main: #000000;
+    --text-muted: #555555;
+    --text-light: #8e8e93;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.06);
+    --transition-fast: 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 * {
@@ -18,16 +21,19 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg-main);
     color: var(--text-main);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     line-height: 1.6;
 }
 
 /* Navigasyon */
 .navbar {
-    background-color: var(--bg-white);
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
@@ -37,7 +43,7 @@ body {
 .nav-container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 20px 32px;
+    padding: 16px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -46,13 +52,13 @@ body {
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .nav-logo {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
 }
 
 .nav-actions {
@@ -62,17 +68,19 @@ body {
 }
 
 .badge {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     color: var(--text-muted);
     background-color: #f0f0f4;
-    padding: 6px 12px;
+    padding: 4px 10px;
     border-radius: 20px;
 }
 
 /* Düzen Sistemi */
 .main-layout {
-    max-width: 760px; /* Ferahlık için genişletildi */
+    max-width: 720px;
     margin: 0 auto;
     padding: 64px 24px;
 }
@@ -83,17 +91,19 @@ body {
 }
 
 .hero-header h1 {
-    font-size: 40px;
+    font-size: 44px;
     font-weight: 700;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.05em;
+    line-height: 1.1;
     margin-bottom: 16px;
 }
 
 .hero-header p {
     font-size: 16px;
     color: var(--text-muted);
-    max-width: 500px;
+    max-width: 480px;
     margin: 0 auto;
+    line-height: 1.5;
 }
 
 /* Kartlar */
@@ -101,8 +111,13 @@ body {
     background-color: var(--bg-white);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: 40px; /* İç boşluk artırıldı */
+    padding: 40px;
     box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-fast);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
 }
 
 .mb-32 { margin-bottom: 32px; }
@@ -113,25 +128,27 @@ body {
     display: flex;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 32px;
-    gap: 32px; /* Sekmeler arası boşluk artırıldı */
+    gap: 32px;
 }
 
 .tab-button {
     background: none;
     border: none;
     padding-bottom: 16px;
-    font-size: 15px;
+    font-family: inherit;
+    font-size: 14px;
     font-weight: 500;
     color: var(--text-light);
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: all 0.2s;
+    transition: color var(--transition-fast);
     position: relative;
+    outline: none;
 }
 
-.tab-button:hover {
+.tab-button:hover, .tab-button:focus-visible {
     color: var(--text-main);
 }
 
@@ -148,6 +165,7 @@ body {
     right: 0;
     height: 2px;
     background-color: var(--text-main);
+    border-radius: 2px 2px 0 0;
 }
 
 /* Arama Kutusu */
@@ -159,34 +177,40 @@ body {
 
 .search-box-wrapper input {
     width: 100%;
-    padding: 18px 56px 18px 20px;
+    padding: 16px 56px 16px 20px;
     font-family: inherit;
     font-size: 15px;
     background-color: var(--bg-main);
-    border: 1px solid var(--border-color);
+    border: 1.5px solid transparent;
     border-radius: var(--radius-md);
     outline: none;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
-.search-box-wrapper input:focus {
+.search-box-wrapper input:focus, .search-box-wrapper input:focus-visible {
     background-color: var(--bg-white);
     border-color: var(--border-focus);
-    box-shadow: 0 0 0 1px var(--border-focus);
+}
+
+.search-box-wrapper input::placeholder {
+    color: var(--text-light);
 }
 
 .search-icon-btn {
     position: absolute;
-    right: 18px;
+    right: 16px;
     background: none;
     border: none;
     color: var(--text-light);
     cursor: pointer;
     display: flex;
     align-items: center;
+    padding: 4px;
+    transition: color var(--transition-fast);
 }
 
-.search-box-wrapper input:focus + .search-icon-btn {
+.search-box-wrapper input:focus + .search-icon-btn,
+.search-icon-btn:hover {
     color: var(--text-main);
 }
 
@@ -200,14 +224,14 @@ body {
 
 .section-header h2 {
     font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
 }
 
 .anon-control {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
 }
 
 .anon-label {
@@ -221,7 +245,7 @@ body {
     background-color: var(--bg-main);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
-    padding: 20px;
+    padding: 16px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -229,9 +253,9 @@ body {
 }
 
 .info-details h3 {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .info-details p {
@@ -240,17 +264,19 @@ body {
 }
 
 .status-badge {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     background-color: var(--text-main);
     color: var(--bg-white);
-    padding: 6px 10px;
-    border-radius: 6px;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
 }
 
 /* Değerlendirme Seçimi */
 .form-group {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .form-label {
@@ -278,15 +304,15 @@ body {
     gap: 10px;
     cursor: pointer;
     font-family: inherit;
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
     color: var(--text-main);
-    transition: all 0.2s;
+    transition: all var(--transition-fast);
+    outline: none;
 }
 
-.rate-btn:hover {
+.rate-btn:hover, .rate-btn:focus-visible {
     border-color: var(--text-main);
-    background-color: var(--bg-main);
 }
 
 .rate-btn.selected {
@@ -297,21 +323,25 @@ body {
 
 textarea {
     width: 100%;
-    padding: 20px;
+    padding: 16px;
     font-family: inherit;
     font-size: 15px;
     background-color: var(--bg-main);
-    border: 1px solid var(--border-color);
+    border: 1.5px solid transparent;
     border-radius: var(--radius-md);
     outline: none;
-    resize: none;
-    transition: all 0.2s;
+    resize: vertical;
+    min-height: 120px;
+    transition: all var(--transition-fast);
 }
 
-textarea:focus {
+textarea:focus, textarea:focus-visible {
     background-color: var(--bg-white);
     border-color: var(--border-focus);
-    box-shadow: 0 0 0 1px var(--border-focus);
+}
+
+textarea::placeholder {
+    color: var(--text-light);
 }
 
 /* Butonlar */
@@ -320,14 +350,19 @@ textarea:focus {
     font-size: 14px;
     font-weight: 600;
     padding: 12px 20px;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: all 0.2s;
+    transition: all var(--transition-fast);
+    outline: none;
+}
+
+.btn:focus-visible {
+    box-shadow: 0 0 0 2px var(--bg-white), 0 0 0 4px var(--text-main);
 }
 
 .btn-primary {
@@ -336,7 +371,12 @@ textarea:focus {
 }
 
 .btn-primary:hover {
-    background-color: #333333;
+    background-color: #222222;
+}
+
+.btn-primary:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
 .btn-outline {
@@ -353,6 +393,7 @@ textarea:focus {
     width: 100%;
     padding: 16px;
     font-size: 15px;
+    border-radius: var(--radius-md);
 }
 
 .form-footer-notice {
@@ -381,7 +422,7 @@ textarea:focus {
     cursor: pointer;
     top: 0; left: 0; right: 0; bottom: 0;
     background-color: #e5e5ea;
-    transition: .3s;
+    transition: var(--transition-fast);
     border-radius: 24px;
 }
 
@@ -393,7 +434,7 @@ textarea:focus {
     left: 2px;
     bottom: 2px;
     background-color: white;
-    transition: .3s;
+    transition: var(--transition-fast);
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -404,4 +445,44 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(20px);
+}
+
+input:focus-visible + .slider {
+    box-shadow: 0 0 0 2px var(--bg-white), 0 0 0 4px var(--text-main);
+}
+
+/* Toast Bildirim Sistemi */
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1000;
+}
+
+.toast {
+    background-color: var(--text-main);
+    color: var(--bg-white);
+    padding: 14px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: var(--shadow-hover);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.error {
+    background-color: #dc2626; /* Kırmızı uyarı */
 }
