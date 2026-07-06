@@ -131,8 +131,9 @@
         elements.submitBtn.addEventListener('click', async () => {
             const content = elements.reviewContent.value.trim();
             
-            // TODO: Google Places entegrasyonu bitince burası dinamik veriye bağlanacak
-            state.selectedBusinessId = state.selectedBusinessId || "test-uuid-1234";
+            // Geçerli bir test UUID'si kullanıyoruz.
+            // Google Places entegrasyonu bitince burası dinamik veriye bağlanacak
+            state.selectedBusinessId = state.selectedBusinessId || "00000000-0000-0000-0000-000000000001";
 
             // Validasyon Kontrolleri
             if (!state.selectedRating) {
@@ -169,7 +170,7 @@
                 
                 // Formu temizle
                 elements.reviewContent.value = '';
-                setRating(null); // Özel null kontrolü eklendi
+                setRating(null);
                 elements.anonToggle.checked = false;
                 state.isAnonymous = false;
                 
