@@ -14,10 +14,17 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">İşçiAğı.</div>
+            <div class="nav-brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                <span class="nav-logo">İşçiAğı.</span>
+            </div>
             <div class="nav-actions">
-                <span class="badge">Beta v1.0</span>
-                <button id="auth-btn" class="btn btn-primary">Giriş Yap</button>
+                <span class="badge">Beta v1.1</span>
+                <button id="auth-btn" class="btn btn-outline">Giriş Yap</button>
             </div>
         </div>
     </nav>
@@ -25,21 +32,30 @@
     <main class="main-layout">
         
         <header class="hero-header">
-            <h1>Deneyimini Paylaş, Yol Göster.</h1>
-            <p>İş yerlerini inceleyin, çalışma şartlarını görün, isterseniz tamamen anonim kalarak hakkınızı arayın.</p>
+            <h1>Şeffaf Çalışma Ortamı.</h1>
+            <p>İş yerlerini inceleyin, çalışma şartlarını görün, isterseniz tamamen anonim kalarak deneyimlerinizi aktarın.</p>
         </header>
 
-        <section class="card mb-24">
+        <section class="card mb-32">
             <div class="tabs">
-                <button id="tab-internal" class="tab-button active">Sistemde Ara</button>
-                <button id="tab-google" class="tab-button">Haritalarda Ara</button>
-                <button id="tab-manual" class="tab-button">Manuel İşletme Ekle</button>
+                <button id="tab-internal" class="tab-button active">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    Sistemde Ara
+                </button>
+                <button id="tab-google" class="tab-button">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    Haritalarda Ara
+                </button>
+                <button id="tab-manual" class="tab-button">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Manuel Ekle
+                </button>
             </div>
 
             <div class="search-box-wrapper">
                 <input type="text" id="search-input" placeholder="Sistemimizde kayıtlı iş yerlerini arayın...">
                 <button id="search-submit-btn" class="search-icon-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </button>
             </div>
             
@@ -48,10 +64,10 @@
 
         <section id="review-section" class="card">
             <div class="section-header">
-                <h2>Deneyimini Paylaş</h2>
+                <h2>Deneyiminizi Aktarın</h2>
                 
                 <div class="anon-control">
-                    <span class="anon-label">Kimliğimi Gizle</span>
+                    <span class="anon-label">Gizli Kullanıcı</span>
                     <label class="switch">
                         <input type="checkbox" id="anonymous-toggle">
                         <span class="slider"></span>
@@ -59,7 +75,7 @@
                 </div>
             </div>
 
-            <div id="selected-business-card" class="info-banner">
+            <div id="selected-business-card" class="info-banner hidden">
                 <div class="info-details">
                     <h3 id="current-business-name">Özkanlar Tekstil Sanayi</h3>
                     <p id="current-business-address">İstanbul, Bağcılar</p>
@@ -68,26 +84,29 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label">Genel Değerlendirmen</label>
+                <label class="form-label">Genel Değerlendirme</label>
                 <div class="rating-options">
                     <button type="button" id="rate-recommend" class="rate-btn">
-                        <span class="emoji">👍</span>
-                        <span class="text">Önerilen</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                        Önerilen
                     </button>
                     <button type="button" id="rate-not-recommend" class="rate-btn">
-                        <span class="emoji">👎</span>
-                        <span class="text">Önerilmeyen</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path></svg>
+                        Önerilmeyen
                     </button>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="review-content" class="form-label">Çalışma Şartları & Detaylar</label>
-                <textarea id="review-content" rows="5" placeholder="Maaşlar düzenli ödeniyor mu? Mesai ücretleri veriliyor mu? Yönetimin çalışanlara tavrı nasıl? Detaylıca belirtin..."></textarea>
+                <label for="review-content" class="form-label">Çalışma Şartları Detayları</label>
+                <textarea id="review-content" rows="6" placeholder="Maaş düzeni, mesai ücretleri ve yönetim tavrı hakkında net bilgileri buraya yazabilirsiniz."></textarea>
             </div>
 
-            <button id="submit-review-btn" class="btn btn-primary btn-block">Paylaşımı Gönder</button>
-            <p class="form-footer-notice">Gönderilen tüm yorumlar topluluk yönergelerine ve moderasyon süzgecine tabidir.</p>
+            <button id="submit-review-btn" class="btn btn-primary btn-block">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                Sisteme Gönder
+            </button>
+            <p class="form-footer-notice">Gönderilen değerlendirmeler platform kurallarına uygun olmalıdır.</p>
         </section>
 
     </main>
