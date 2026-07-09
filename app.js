@@ -12,7 +12,12 @@
         selectedBusinessId: null,
         selectedRating: null,
         isAnonymous: false,
-        currentUser: null
+        currentUser: null,
+        criteria: {
+            salary: null,
+            overtime: null,
+            environment: null
+        }
     };
 
     // DOM Elementlerini Cache'leme (Performans için)
@@ -23,6 +28,7 @@
         anonToggle: document.getElementById('anonymous-toggle'),
         recommendBtn: document.getElementById('rate-recommend'),
         notRecommendBtn: document.getElementById('rate-not-recommend'),
+        criteriaBtns: document.querySelectorAll('.criteria-btn'),
         reviewContent: document.getElementById('review-content'),
         submitBtn: document.getElementById('submit-review-btn'),
         btnText: document.querySelector('#submit-review-btn .btn-text'),
@@ -35,6 +41,7 @@
 
         setupTabListeners();
         setupRatingListeners();
+        setupCriteriaListeners();
         setupFormListeners();
         checkUserSession();
     }
@@ -94,7 +101,6 @@
     }
 
     function setRating(ratingType) {
-        // Durumu sıfırla
         elements.recommendBtn.classList.remove('selected');
         elements.notRecommendBtn.classList.remove('selected');
         
@@ -107,6 +113,26 @@
         } else {
             state.selectedRating = null;
         }
+    }
+
+    function setupCriteriaListeners() {
+        elements.criteriaBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const category = e.target.dataset.category;
+                const value = e.target.dataset.value;
+                
+                // Aynı kategorideki diğer butonların seçilimini kaldır
+                document.querySelectorAll(`.criteria-btn[data-category="${category}"]`).forEach(b => {
+                    b.classList.remove('selected');
+                });
+
+                // Tıklananı seç
+                e.target.classList.add('selected');
+                
+                // State'i güncelle
+                state.criteria[category] = value;
+            });
+        });
     }
 
     async function checkUserSession() {
@@ -132,12 +158,15 @@
             const content = elements.reviewContent.value.trim();
             
             // Geçerli bir test UUID'si kullanıyoruz.
-            // Google Places entegrasyonu bitince burası dinamik veriye bağlanacak
             state.selectedBusinessId = state.selectedBusinessId || "00000000-0000-0000-0000-000000000001";
 
             // Validasyon Kontrolleri
             if (!state.selectedRating) {
                 showToast("Lütfen işletme hakkında genel kararınızı seçin.", "error");
+                return;
+            }
+            if (!state.criteria.salary || !state.criteria.overtime || !state.criteria.environment) {
+                showToast("Lütfen tüm detaylı kriterleri doldurun.", "error");
                 return;
             }
             if (content.length < 10) {
@@ -149,6 +178,7 @@
                 business_id: state.selectedBusinessId,
                 user_id: state.currentUser ? state.currentUser.id : null,
                 rating: state.selectedRating,
+                criteria: state.criteria, // JSONB formatında veritabanına gidebilir
                 content: content,
                 is_anonymous: state.isAnonymous,
                 created_at: new Date().toISOString()
@@ -171,6 +201,8 @@
                 // Formu temizle
                 elements.reviewContent.value = '';
                 setRating(null);
+                document.querySelectorAll('.criteria-btn').forEach(b => b.classList.remove('selected'));
+                state.criteria = { salary: null, overtime: null, environment: null };
                 elements.anonToggle.checked = false;
                 state.isAnonymous = false;
                 
