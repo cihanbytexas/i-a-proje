@@ -104,8 +104,40 @@
             </div>
 
             <div class="form-group">
-                <label for="review-content" class="form-label">Çalışma Şartları Detayları</label>
-                <textarea id="review-content" rows="6" placeholder="Maaş düzeni, mesai ücretleri ve yönetim tavrı hakkında net bilgileri buraya yazabilirsiniz."></textarea>
+                <label class="form-label">Çalışma Kriterleri</label>
+                <div class="criteria-container">
+                    
+                    <div class="criteria-row">
+                        <span class="criteria-label">Maaşlar zamanında ödeniyor mu?</span>
+                        <div class="criteria-actions">
+                            <button type="button" class="criteria-btn" data-category="salary" data-value="yes">Evet</button>
+                            <button type="button" class="criteria-btn" data-category="salary" data-value="no">Hayır</button>
+                        </div>
+                    </div>
+
+                    <div class="criteria-row">
+                        <span class="criteria-label">Fazla mesailer karşılanıyor mu?</span>
+                        <div class="criteria-actions">
+                            <button type="button" class="criteria-btn" data-category="overtime" data-value="yes">Evet</button>
+                            <button type="button" class="criteria-btn" data-category="overtime" data-value="no">Hayır</button>
+                        </div>
+                    </div>
+
+                    <div class="criteria-row">
+                        <span class="criteria-label">Çalışma ortamı ve yönetim yaklaşımı?</span>
+                        <div class="criteria-actions">
+                            <button type="button" class="criteria-btn" data-category="environment" data-value="good">İyi</button>
+                            <button type="button" class="criteria-btn" data-category="environment" data-value="average">Orta</button>
+                            <button type="button" class="criteria-btn" data-category="environment" data-value="bad">Kötü</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="review-content" class="form-label">Detaylı Deneyimleriniz</label>
+                <textarea id="review-content" rows="6" placeholder="Sosyal haklar, iş güvenliği ve diğer süreçler hakkında net bilgileri buraya yazabilirsiniz."></textarea>
             </div>
 
             <button id="submit-review-btn" class="btn btn-primary btn-block">
