@@ -276,7 +276,7 @@ body {
 
 /* Değerlendirme Seçimi */
 .form-group {
-    margin-bottom: 24px;
+    margin-bottom: 28px;
 }
 
 .form-label {
@@ -318,6 +318,57 @@ body {
 .rate-btn.selected {
     border-color: var(--text-main);
     background-color: var(--text-main);
+    color: var(--bg-white);
+}
+
+/* Kriter Alanları */
+.criteria-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: var(--bg-main);
+    padding: 16px;
+    border-radius: var(--radius-md);
+}
+
+.criteria-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.criteria-label {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.criteria-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.criteria-btn {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.criteria-btn:hover {
+    border-color: var(--text-main);
+    color: var(--text-main);
+}
+
+.criteria-btn.selected {
+    background-color: var(--text-main);
+    border-color: var(--text-main);
     color: var(--bg-white);
 }
 
